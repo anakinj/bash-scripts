@@ -1,6 +1,7 @@
 #!/bin/sh
 #Author: Joakim Antman (antmanj (at) gmail.com)
 
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 THINGSPEAK_APIKEY=$1
 SPEEDTEST_SERVER="4549" #Helsinki, Elisa Oyj
 RESULT_RAW=$(speedtest-cli --server $SPEEDTEST_SERVER --simple)
