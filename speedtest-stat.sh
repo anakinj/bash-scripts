@@ -1,12 +1,17 @@
 #!/bin/sh
-#Author: Joakim Antman (antmanj (at) gmail.com)
+#Author: Joakim Antman (antmanj [at] gmail.com)
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 THINGSPEAK_APIKEY=$1
 SPEEDTEST_SERVER="4549" #Helsinki, Elisa Oyj
-RESULT_RAW=$(speedtest-cli --server $SPEEDTEST_SERVER --simple)
+RESULT_RAW=$(speedtest --server $SPEEDTEST_SERVER --simple)
 #DBGRESULT_RAW="ping: 20.031 Z download: 9.07 X upload: 0.80 Y"
-rc=$?; if [ $rc != 0 ]; then exit $rc; fi
+rc=$?
+if [ $rc != 0 ]
+then 
+    echo $RESULT_RAW 
+    exit $rc
+fi
 
 #AWK Version for the case when newlines would be preserved
 #RES_PING=$(echo $RESULT_RAW | awk 'BEGIN {FS=" ";} { if($1 == "Ping:"){ print $2; } }')
